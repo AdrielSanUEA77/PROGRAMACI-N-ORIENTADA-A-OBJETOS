@@ -1,1 +1,32 @@
+#herencia_vehiculo.py
+class Vehiculo:
+    def __init__(self, marca: str):
+        self.marca = marca
+
+    def encender(self) -> None:
+        print(f"{self.marca}: motor encendido.")
+
+class Auto(Vehiculo):
+    def __init__(self, marca: str, puertas: int = 4):
+        super().__init__(marca)
+        self.puertas = puertas
+
+    def tocar_claxon(self) -> None:
+        print(f"{self.marca}: ¡pi-pi-pi!")
+
+class Moto(Vehiculo):
+    def encender(self) -> None:
+        # Sobrescribe comportamiento de la clase base
+        print(f"{self.marca}: motor encendido (arranque con pedal).")
+
+def main():
+    a = Auto("Toyota", 4)
+    a.encender()
+    a.tocar_claxon()
+
+    m = Moto("Yamaha")
+    m.encender()
+
+if __name__ == "__main__":
+    main()
 
