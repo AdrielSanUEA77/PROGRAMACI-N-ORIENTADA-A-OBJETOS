@@ -1,1 +1,34 @@
+# polimorfismo_figuras.py
+from math import pi
+
+class Figura:
+    def area(self) -> float:
+        raise NotImplementedError("Implementa el método 'area' en la subclase.")
+
+class Rectangulo(Figura):
+    def __init__(self, ancho: float, alto: float):
+        self.ancho = ancho
+        self.alto = alto
+
+    def area(self) -> float:
+        return self.ancho * self.alto
+
+class Circulo(Figura):
+    def __init__(self, radio: float):
+        self.radio = radio
+
+    def area(self) -> float:
+        return pi * (self.radio ** 2)
+
+def imprimir_area(figura: Figura) -> None:
+    """Función que trabaja con cualquier 'Figura' (polimorfismo)."""
+    print(f"Área: {figura.area():.2f}")
+
+def main():
+    figuras = [Rectangulo(6, 9), Circulo(2.5), Rectangulo(2, 2)]
+    for f in figuras:
+        imprimir_area(f)
+
+if __name__ == "__main__":
+    main()
 
