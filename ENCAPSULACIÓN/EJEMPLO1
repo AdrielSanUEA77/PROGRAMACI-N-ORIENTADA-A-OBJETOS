@@ -1,1 +1,40 @@
 
+# encapsulacion_cuenta.py
+class CuentaBancaria:
+    """Encapsula el saldo para evitar modificaciones directas e inseguras."""
+    
+    def __init__(self, titular: str, saldo_inicial: float = 0.0):
+        self.titular = titular
+        self.__saldo = max(0.0, saldo_inicial)  # atributo 'privado'
+
+    @property
+    def saldo(self) -> float:
+        """Lectura controlada del saldo."""
+        return self.__saldo
+
+    def depositar(self, monto: float) -> None:
+        if monto <= 0:
+            raise ValueError("El depósito debe ser positivo.")
+        self.__saldo += monto
+
+    def retirar(self, monto: float) -> None:
+        if monto <= 0:
+            raise ValueError("El retiro debe ser positivo.")
+        if monto > self.__saldo:
+            raise ValueError("Fondos insuficientes.")
+        self.__saldo -= monto
+
+def main():
+    cuenta = CuentaBancaria("Adriel", 50)
+    cuenta.depositar(25)
+    print(f"Saldo: ${cuenta.saldo:.2f}")
+    try:
+        cuenta.retirar(100)  # disparará error por fondos insuficientes
+    except ValueError as e:
+        print("Error:", e)
+    cuenta.retirar(30)
+    print(f"Saldo final: ${cuenta.saldo:.2f}")
+
+if __name__ == "__main__":
+    main()
+
