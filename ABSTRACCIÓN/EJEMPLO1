@@ -1,1 +1,40 @@
+# abstraccion_pago.py
+from abc import ABC, abstractmethod
+
+
+class ProcesadorPago(ABC):
+    """Interfaz abstracta: define qué deben hacer los procesadores de pago."""
+
+    @abstractmethod
+    def pagar(self, monto: float) -> None:
+        pass
+
+
+class PagoTarjeta(ProcesadorPago):
+    def __init__(self, numero_tarjeta: str):
+        self.numero_tarjeta = numero_tarjeta
+
+    def pagar(self, monto: float) -> None:
+        print(f"Pagando ${monto:.2f} con tarjeta {self.numero_tarjeta[-4:]}... Aprobado.")
+
+
+class PagoPaypal(ProcesadorPago):
+    def __init__(self, correo: str):
+        self.correo = correo
+
+    def pagar(self, monto: float) -> None:
+        print(f"Pagando ${monto:.2f} desde cuenta PayPal ({self.correo})... Aprobado.")
+
+
+def main():
+    carrito_total = 19.99
+    metodo = PagoTarjeta("235262341251")
+    metodo.pagar(carrito_total)
+
+    metodo2 = PagoPaypal("adriel8@correo.com")
+    metodo2.pagar(7.50)
+
+
+if __name__ == "__main__":
+    main()
 
