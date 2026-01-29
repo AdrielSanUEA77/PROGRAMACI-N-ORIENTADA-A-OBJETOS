@@ -1,0 +1,59 @@
+Resumen de mejoras aplicadas al código
+
+1. Aplicación de buenas prácticas (PEP 8 y PEP 257)
+Se añadieron cadenas de documentación, se organizaron las secciones y se renombraron las variables y funciones a Snake_case.
+Beneficio: Código más claro, estandarizado y sencillo de mantener.
+
+2. Uso de pathlib en lugar de os.path
+Se reemplazaron rutas manuales por objetos Path.
+Beneficio: Manejo de rutas más limpio, seguro y multiplataforma.
+
+3. Tipado estático (type hints)
+Se añadieron anotaciones de tipo en funciones.
+Beneficio: Facilita detección de errores y mejora el autocompletado.
+
+4. Lectura de archivos en UTF‑8
+Se implementó encoding="utf-8" al leer scripts.
+Beneficio: Evita fallos al leer archivos con tildes y caracteres especiales.
+
+5. Listados ordenados
+Scripts y carpetas se muestran ordenados alfabéticamente.
+Beneficio: navegación más clara y profesional.
+
+6. Manejo robusto de errores
+Se incorporaron mensajes apropiados y try/except en los errores de ejecución, lectura o rutas.
+Beneficio: El programa no se cierra de manera inesperada.
+
+7. Sistema de logging
+Se creó un archivo dashboard.log registrando eventos y errores.
+Beneficio: Permite depurar problemas sin llenar la consola.
+
+8. Ejecución segura con sys.executable
+Ahora los scripts se ejecutan con el mismo Python que corre el dashboard.
+Beneficio: Evita conflictos de versiones o entornos.
+
+9. Opción de ejecutar en nueva ventana o en la misma consola.
+Se incorporaron dos formas de ejecución.
+Beneficio: adaptabilidad de acuerdo con el entorno del usuario.
+
+10. Compatibilidad multiplataforma mejorada
+
+Windows: start cmd /k ...
+Linux: prueba diferentes terminales
+macOS: Se corrigió el bloque con osascript usando json.dumps.
+Beneficio: Funcionamiento estable en cualquier sistema.
+
+11. Validación de entradas del usuario
+Se controlan entradas que no son numéricas y valores que están fuera de rango.
+Beneficio: Evita fallos y optimiza la experiencia de usuario.
+
+12. Mensajes claros cuando no hay subcarpetas o scripts
+Beneficio: El usuario entiende por qué un menú está vacío.
+
+13. Código modular siguiendo SRP (Single Responsibility Principle)
+Separación entre: desplegar menús, enumerar scripts/carpetas, interpretar código y ejecutar scripts.
+Beneficio: Código más ordenado y sencillo de extensor.
+
+14. Corrección del error de comillas en macOS
+Se sustituyó un f-string problemático por una construcción segura utilizando json.dumps.
+Beneficio: Previene errores de sintaxis, incluso en Windows.
